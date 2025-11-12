@@ -10,5 +10,4 @@ How it works
   - Uploads the created PDFs as a workflow artifact named `exported-pdfs`.
 
 Notes
-- The workflow uses `latexmk -shell-escape`. You mentioned you don't need minted or custom fonts.
 - If a build complains about a missing LaTeX package, add that package name to the `extra-packages` list in the workflow step `Setup TeX Live` (or set scheme to medium/full).

@@ -24,7 +24,7 @@ jobs:
           texlive-version: '2024'
           scheme: 'small'
           extra-packages: >-
-            latexmk biblatex biber pgf amsmath collection-latexrecommended collection-fontsrecommended
+            latexmk pgf amsmath collection-latexrecommended collection-fontsrecommended
           cache: true
 
       - name: Convert .org files to PDF
