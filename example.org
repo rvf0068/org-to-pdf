@@ -1,0 +1,32 @@
+* Example Org file with TikZ and bibliography
+
+#+TITLE: Example Document with TikZ and Bibliography
+#+AUTHOR: Your Name
+#+DATE: 2025-11-12
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+BIBLIOGRAPHY: refs
+
+This is a minimal example to test the export workflow.
+
+** A TikZ figure
+
+Here is an inline TikZ picture:
+
+#+BEGIN_EXPORT latex
+\begin{tikzpicture}
+  \draw[->] (0,0) -- (2,0);
+  \draw[->] (0,0) -- (0,2);
+  \draw (0,0) node[below left]{O} -- (1,1) node[above]{P};
+\end{tikzpicture}
+#+END_EXPORT
+
+** A citation and equation
+
+We can cite something [cite:@knuth1997].
+
+An inline equation: \( E = mc^2 \).
+
+** Bibliography
+
+See the bibliography at the end.
