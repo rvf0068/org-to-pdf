@@ -1,11 +1,9 @@
-* Example Org file with TikZ and bibliography
-
 #+TITLE: Example Document with TikZ and Bibliography
 #+AUTHOR: Your Name
 #+DATE: 2025-11-12
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usepackage{amsmath}
-#+BIBLIOGRAPHY: refs
+#+BIBLIOGRAPHY: refs.bib
 
 This is a minimal example to test the export workflow.
 
