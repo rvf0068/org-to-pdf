@@ -2,8 +2,6 @@ name: Convert Org files to PDF
 
 on:
   push:
-    paths:
-      - '**/*.org'
   workflow_dispatch:
 
 jobs:
@@ -18,14 +16,10 @@ jobs:
         with:
           version: '30.1'
 
-      - name: Setup TeX Live (cached, minimal + needed packages)
-        uses: latex-actions/setup-texlive@v1
-        with:
-          texlive-version: '2024'
-          scheme: 'small'
-          extra-packages: >-
-            latexmk pgf amsmath collection-latexrecommended collection-fontsrecommended
-          cache: true
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive texlive-latex-extra texlive-fonts-recommended latexmk
 
       - name: Convert .org files to PDF
         run: |
@@ -40,6 +34,18 @@ jobs:
             emacs --batch -Q "$f" \
               --eval '(progn (require "org") (require "ox-latex") (setq org-latex-pdf-process (list "latexmk -pdf -shell-escape -interaction=nonstopmode -halt-on-error %f")) (org-latex-export-to-pdf))'
           done
+
+      - name: Commit generated PDFs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f '*.pdf'
+          if git diff --staged --quiet; then
+            echo "No PDF files to commit"
+          else
+            git commit -m "Auto-generate PDFs from org files"
+            git push
+          fi
 
       - name: Upload PDFs
         uses: actions/upload-artifact@v4
