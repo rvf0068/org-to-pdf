@@ -4,10 +4,9 @@ This repository demonstrates a GitHub Actions workflow that converts Emacs Org-m
 
 How it works
 - On push of any `*.org` file (or on manual dispatch), the workflow:
-  - Installs Emacs quickly using purcell/setup-emacs.
-  - Installs a small, cached TeX Live via latex-actions/setup-texlive with the packages required for tikz, amsmath and bibliography.
+  - Installs Emacs and TeX Live directly from Ubuntu's package repository.
   - Runs Emacs in batch mode to export each `.org` file to PDF (using latexmk so bibliographies and tikz work).
   - Uploads the created PDFs as a workflow artifact named `exported-pdfs`.
 
 Notes
-- If a build complains about a missing LaTeX package, add that package name to the `extra-packages` list in the workflow step `Setup TeX Live` (or set scheme to medium/full).
+- If a build complains about a missing LaTeX package, install it by adding the appropriate `texlive-*` package to the apt-get install command in the workflow.
